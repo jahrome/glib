@@ -655,6 +655,10 @@ strdup_convert (const gchar *string,
 	return result;
       else
 	{
+#ifdef USE_LIBICONV_GNU	
+      /* No libiconv in Android, so we only duplicate message if no 
+	   * USE_LIBICONV_GNU */
+           
 	  /* Not thread-safe, but doesn't matter if we print the warning twice
 	   */
 	  static gboolean warned = FALSE; 
@@ -664,7 +668,7 @@ strdup_convert (const gchar *string,
 	      _g_fprintf (stderr, "GLib: Cannot convert message: %s\n", err->message);
 	    }
 	  g_error_free (err);
-	  
+#endif	  
 	  return g_strdup (string);
 	}
     }
