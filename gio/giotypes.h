@@ -20,6 +20,13 @@
  * Author: Alexander Larsson <alexl@redhat.com>
  */
 
+#define GLIB_SYSDEF_AF_UNIX 1
+#define GLIB_SYSDEF_AF_INET 2
+#define GLIB_SYSDEF_AF_INET6 10
+
+#define GLIB_SYSDEF_MSG_OOB 1
+#define GLIB_SYSDEF_MSG_PEEK 2
+#define GLIB_SYSDEF_MSG_DONTROUTE 4
 #if !defined (__GIO_GIO_H_INSIDE__) && !defined (GIO_COMPILATION)
 #error "Only <gio/gio.h> can be included directly."
 #endif

@@ -498,3 +498,4 @@
 
 #include <glibconfig.h>
 
+#undef HAVE_FUTEX

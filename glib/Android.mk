@@ -4,6 +4,10 @@ include $(CLEAR_VARS)
 LOCAL_SRC_FILES:= \
     ./libcharset/localcharset.c \
     garray.c        \
+    gchecksum.c        \
+    gbitlock.c      \
+    gtestutils.c    \
+    gpoll.c         \
     gasyncqueue.c   \
     gatomic.c       \
     gbacktrace.c    \
@@ -55,6 +59,13 @@ LOCAL_SRC_FILES:= \
     gutils.c        \
     gprintf.c       \
     giounix.c       \
+    gvariant.c      \
+    gvariant-core.c \
+    gvariant-parser.c \
+    gvariant-serialiser.c \
+    gvarianttype.c \
+    gvarianttypeinfo.c \
+    gbuffer.c \
     gspawn.c
 
 LOCAL_MODULE:= libglib-2.0
@@ -86,4 +97,5 @@ LOCAL_CFLAGS := \
     -DG_DISABLE_DEPRECATED \
     -DGLIB_COMPILATION 
 
+LOCAL_PRELINK_MODULE := false
 include $(BUILD_SHARED_LIBRARY)

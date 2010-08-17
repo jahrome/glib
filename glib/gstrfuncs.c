@@ -3148,10 +3148,14 @@ _g_dgettext_should_translate (void)
 
       const char *default_domain     = textdomain (NULL);
       const char *translator_comment = gettext ("");
+#ifdef HAVE_LOCALE_H    /* Remove local in Android */
 #ifndef G_OS_WIN32
       const char *translate_locale   = setlocale (LC_MESSAGES, NULL);
 #else
       const char *translate_locale   = g_win32_getlocale ();
+#endif
+#else
+      const char *translate_locale   = "C";
 #endif
       /* We should NOT translate only if all the following hold:
        *   - user has called textdomain() and set textdomain to non-default

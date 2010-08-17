@@ -20,4 +20,5 @@ LOCAL_CFLAGS := \
     -DG_LOG_DOMAIN=\"GModule\"      \
     -DG_DISABLE_DEPRECATED 
 
+LOCAL_PRELINK_MODULE := false
 include $(BUILD_SHARED_LIBRARY)

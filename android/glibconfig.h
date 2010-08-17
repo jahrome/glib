@@ -168,6 +168,10 @@ union _GSystemThread
 #define GUINT_TO_BE(val)	((guint) GUINT32_TO_BE (val))
 #define G_BYTE_ORDER G_LITTLE_ENDIAN
 
+#define GSIZE_TO_LE(val)	((gsize) GUINT32_TO_LE (val))
+
+#define G_GOFFSET_CONSTANT(val) G_GINT64_CONSTANT(val)
+
 #define GLIB_SYSDEF_POLLIN =1
 #define GLIB_SYSDEF_POLLOUT =4
 #define GLIB_SYSDEF_POLLPRI =2
@@ -178,6 +182,7 @@ union _GSystemThread
 #define G_MODULE_SUFFIX "so"
 
 typedef int GPid;
+typedef gint64 goffset;
 
 G_END_DECLS
 

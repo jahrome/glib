@@ -36,7 +36,6 @@
 #include "gcancellable.h"
 #include "gioscheduler.h"
 #include <gio/gioerror.h>
-#include "glibintl.h"
 
 
 /**

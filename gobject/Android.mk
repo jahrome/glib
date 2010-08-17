@@ -17,9 +17,11 @@ LOCAL_SRC_FILES:= \
     gtype.c                 \
     gvaluearray.c           \
     gvaluetransform.c       \
+    gatomicarray.c          \
     gsourceclosure.c
 
-LOCAL_SHARED_LIBRARIES := libglib-2.0
+LOCAL_SHARED_LIBRARIES := libglib-2.0 \
+	libgthread-2.0
 
 LOCAL_MODULE:= libgobject-2.0
 
@@ -35,4 +37,5 @@ LOCAL_CFLAGS := \
     -DG_DISABLE_CONST_RETURNS       \
     -DG_DISABLE_DEPRECATED 
 
+LOCAL_PRELINK_MODULE := false
 include $(BUILD_SHARED_LIBRARY)
