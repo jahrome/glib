@@ -657,7 +657,7 @@ _g_get_unix_mounts (void)
   return return_list;
 }
 #else
-#error No _g_get_unix_mounts() implementation for system
+static GList *_g_get_unix_mounts (void) { return 0; }
 #endif
 
 /* _g_get_unix_mount_points():
@@ -1041,7 +1041,8 @@ _g_get_unix_mount_points (void)
   return _g_get_unix_mounts ();
 }
 #else
-#error No g_get_mount_table() implementation for system
+static GList *
+_g_get_unix_mount_points (void) { return 0; }
 #endif
 
 static guint64

@@ -3,8 +3,10 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= \
     ./libcharset/localcharset.c \
+    gurifuncs.c     \
+    ghostutils.c    \
     garray.c        \
-    gchecksum.c        \
+    gchecksum.c     \
     gbitlock.c      \
     gtestutils.c    \
     gpoll.c         \

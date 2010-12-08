@@ -526,7 +526,7 @@ do_lookup_service (GThreadedResolverRequest *req,
 #endif
 
 #if defined(G_OS_UNIX)
-  len = res_query (req->u.service.rrname, C_IN, T_SRV, answer, sizeof (answer));
+  len = res_query (req->u.service.rrname, 0, T_SRV, answer, sizeof (answer));
   herr = h_errno;
   req->u.service.targets = _g_resolver_targets_from_res_query (req->u.service.rrname, answer, len, herr, error);
 #elif defined(G_OS_WIN32)

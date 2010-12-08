@@ -646,7 +646,7 @@ complete_in_idle_cb_for_thread (gpointer _data)
     g_simple_async_result_set_error (simple,
                                      G_IO_ERROR,
                                      G_IO_ERROR_CANCELLED,
-                                     "%s", _("Operation was cancelled"));
+                                     "%s", "Operation was cancelled");
  
   g_simple_async_result_complete (simple);
 
@@ -672,7 +672,7 @@ run_in_thread (GIOSchedulerJob *job,
     g_simple_async_result_set_error (simple,
                                      G_IO_ERROR,
                                      G_IO_ERROR_CANCELLED,
-                                     "%s", _("Operation was cancelled"));
+                                     "%s", "Operation was cancelled");
   else
     data->func (simple,
                 simple->source_object,

@@ -228,7 +228,7 @@
 //#define HAVE_NL_LANGINFO 1
 
 /* Have non-POSIX function getpwuid_r */
-/* #undef HAVE_NONPOSIX_GETPWUID_R */
+#undef HAVE_NONPOSIX_GETPWUID_R
 
 /* Define to 1 if you have the `nsleep' function. */
 /* #undef HAVE_NSLEEP */
@@ -240,7 +240,7 @@
 #define HAVE_POLL 1
 
 /* Have POSIX function getpwuid_r */
-/* #undef HAVE_POSIX_GETPWUID_R */
+#undef HAVE_POSIX_GETPWUID_R
 
 /* Define to 1 if you have the `posix_memalign' function. */
 #define HAVE_POSIX_MEMALIGN 1
@@ -499,3 +499,11 @@
 #include <glibconfig.h>
 
 #undef HAVE_FUTEX
+
+#define HAVE_STRNDUP 1
+//#undef G_OS_UNIX
+#define USE_STATFS 1
+#define HAVE_GRP_H 1
+#define HAVE_PWD_H 1
+#define HAVE_SYS_VFS_H 1
+#define HAVE_MNTENT_H

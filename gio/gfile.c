@@ -6113,7 +6113,6 @@ g_file_query_default_handler (GFile                  *file,
   uri_scheme = g_file_get_uri_scheme (file);
   if (uri_scheme && uri_scheme[0] != '\0')
     {
-      appinfo = g_app_info_get_default_for_uri_scheme (uri_scheme);
       g_free (uri_scheme);
 
       if (appinfo != NULL)
@@ -6135,8 +6134,6 @@ g_file_query_default_handler (GFile                  *file,
     {
       /* Don't use is_native(), as we want to support fuse paths if availible */
       path = g_file_get_path (file);
-      appinfo = g_app_info_get_default_for_type (content_type,
-						 path == NULL);
       g_free (path);
     }
   
