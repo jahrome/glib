@@ -28,6 +28,7 @@
 #define __G_IO_ERROR_H__
 
 #include <glib.h>
+#include <gio/giotypes.h>
 #include <gio/gioenums.h>
 
 G_BEGIN_DECLS
