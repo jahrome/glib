@@ -394,7 +394,7 @@ g_content_type_guess_for_tree (GFile *root)
 
 #include <dirent.h>
 
-#define XDG_PREFIX _gio_xdg
+//#define XDG_PREFIX _gio_xdg
 #include "xdgmime/xdgmime.h"
 
 /* We lock this mutex whenever we modify global state in this module.  */

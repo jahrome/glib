@@ -153,9 +153,6 @@ g_resolver_get_default (void)
 {
   if (!default_resolver)
     {
-      if (g_thread_supported ())
-        default_resolver = g_object_new (G_TYPE_THREADED_RESOLVER, NULL);
-      else
         {
 #if defined(G_OS_UNIX)
           default_resolver = g_object_new (G_TYPE_UNIX_RESOLVER, NULL);
@@ -791,7 +788,6 @@ _g_resolver_name_from_nameinfo (GInetAddress  *address,
   return g_strdup (name);
 }
 
-#if defined(G_OS_UNIX)
 /* Private method to process a res_query response into GSrvTargets */
 GList *
 _g_resolver_targets_from_res_query (const gchar      *rrname,
@@ -800,6 +796,9 @@ _g_resolver_targets_from_res_query (const gchar      *rrname,
                                     gint              herr,
                                     GError          **error)
 {
+	return 0;
+}
+#if defined(G_OS_UNIX_jer)
   gint count;
   gchar namebuf[1024];
   guchar *end, *p;

@@ -132,7 +132,12 @@ g_utf8_collate (const gchar *str1,
 
   if (g_get_charset (&charset))
     {
+#ifndef BUILD_WITH_ANDROID    
       result = strcoll (str1_norm, str2_norm);
+#else
+	  /* there is no strcoll() in Android's bionic C, use strcmp() to replace it */
+      result = strcmp (str1_norm, str2_norm);
+#endif /* BUILD_WITH_ANDROID */ 
     }
   else
     {
@@ -140,7 +145,12 @@ g_utf8_collate (const gchar *str1,
       gchar *str2_locale = g_convert (str2_norm, -1, charset, "UTF-8", NULL, NULL, NULL);
 
       if (str1_locale && str2_locale)
-	result =  strcoll (str1_locale, str2_locale);
+#ifndef BUILD_WITH_ANDROID    
+        result =  strcoll (str1_locale, str2_locale);
+#else
+	    /* there is no strcoll() in Android's bionic C, use strcmp() to replace it */
+        result =  strcmp (str1_locale, str2_locale);
+#endif	
       else if (str1_locale)
 	result = -1;
       else if (str2_locale)
@@ -425,12 +435,23 @@ g_utf8_collate_key (const gchar *str,
 
   if (g_get_charset (&charset))
     {
+#ifndef BUILD_WITH_ANDROID    
       xfrm_len = strxfrm (NULL, str_norm, 0);
       if (xfrm_len >= 0 && xfrm_len < G_MAXINT - 2)
         {
           result = g_malloc (xfrm_len + 1);
           strxfrm (result, str_norm, xfrm_len + 1);
         }
+#else
+	  /* there is no strxfrm()/strxfrm() in Android's Bionic C, 
+	   * use strlen()/strcpy() to replace it */
+      xfrm_len = strlen(str_norm) + 1;
+      if (xfrm_len >= 0 && xfrm_len < G_MAXINT - 2)
+        {
+          result = g_malloc (xfrm_len + 1);
+          strcpy(result, str_norm);
+        }
+#endif /* BUILD_WITH_ANDROID */
     }
   else
     {
@@ -438,7 +459,13 @@ g_utf8_collate_key (const gchar *str,
 
       if (str_locale)
 	{
+#ifndef BUILD_WITH_ANDROID    
 	  xfrm_len = strxfrm (NULL, str_locale, 0);
+#else
+	  /* there is no strxfrm()/strxfrm() in Android's Bionic C, 
+	   * use strlen()/strcpy() to replace it */
+	  xfrm_len = strlen(str_locale);
+#endif  /* BUILD_WITH_ANDROID */
 	  if (xfrm_len < 0 || xfrm_len >= G_MAXINT - 2)
 	    {
 	      g_free (str_locale);
@@ -449,8 +476,13 @@ g_utf8_collate_key (const gchar *str,
 	{
 	  result = g_malloc (xfrm_len + 2);
 	  result[0] = 'A';
+#ifndef BUILD_WITH_ANDROID    
 	  strxfrm (result + 1, str_locale, xfrm_len + 1);
-	  
+#else
+	  /* there is no strxfrm()/strxfrm() in Android's Bionic C, 
+	   * use strlen()/strcpy() to replace it */
+      strcpy (result + 1, str_locale);
+#endif /* BUILD_WITH_ANDROID */
 	  g_free (str_locale);
 	}
     }

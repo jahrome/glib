@@ -36,7 +36,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#ifdef HAVE_LOCALE_H    /* Remove local in Android */
 #include <locale.h>
+#endif
 #include <errno.h>
 #include <ctype.h>              /* For tolower() */
 #if !defined (HAVE_STRSIGNAL) || !defined(NO_SYS_SIGLIST_DECL)
@@ -431,7 +433,9 @@ g_ascii_strtod (const gchar *nptr,
 {
   gchar *fail_pos;
   gdouble val;
+#ifdef HAVE_LOCALE_H  
   struct lconv *locale_data;
+#endif /* HAVE_LOCALE_H */ 
   const char *decimal_point;
   int decimal_point_len;
   const char *p, *decimal_point_pos;
@@ -442,8 +446,14 @@ g_ascii_strtod (const gchar *nptr,
 
   fail_pos = NULL;
 
+#ifdef HAVE_LOCALE_H  
   locale_data = localeconv ();
   decimal_point = locale_data->decimal_point;
+#else
+  /* No local.h in Android, so we assign a default value "." to 
+   * decimal_point */
+  decimal_point = ".";
+#endif /* HAVE_LOCALE_H */
   decimal_point_len = strlen (decimal_point);
 
   g_assert (decimal_point_len != 0);
@@ -625,7 +635,9 @@ g_ascii_formatd (gchar       *buffer,
                  const gchar *format,
                  gdouble      d)
 {
+#ifdef HAVE_LOCALE_H
   struct lconv *locale_data;
+#endif /* HAVE_LOCALE_H */ 
   const char *decimal_point;
   int decimal_point_len;
   gchar *p;
@@ -656,8 +668,14 @@ g_ascii_formatd (gchar       *buffer,
 
   _g_snprintf (buffer, buf_len, format, d);
 
+#ifdef HAVE_LOCALE_H
   locale_data = localeconv ();
   decimal_point = locale_data->decimal_point;
+#else
+  /* No local.h in Android, so we assign a default value "." to 
+   * decimal_point */
+  decimal_point = ".";
+#endif /* HAVE_LOCALE_H */ 
   decimal_point_len = strlen (decimal_point);
 
   g_assert (decimal_point_len != 0);
@@ -3141,10 +3159,14 @@ _g_dgettext_should_translate (void)
 
       const char *default_domain     = textdomain (NULL);
       const char *translator_comment = gettext ("");
+#ifdef HAVE_LOCALE_H    /* Remove local in Android */
 #ifndef G_OS_WIN32
       const char *translate_locale   = setlocale (LC_MESSAGES, NULL);
 #else
       const char *translate_locale   = g_win32_getlocale ();
+#endif
+#else
+      const char *translate_locale   = "C";
 #endif
       /* We should NOT translate only if all the following hold:
        *   - user has called textdomain() and set textdomain to non-default

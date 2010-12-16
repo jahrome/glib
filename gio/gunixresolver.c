@@ -478,7 +478,7 @@ lookup_service_async (GResolver           *resolver,
   GUnixResolverRequest *req;
   _g_asyncns_query_t *qy;
 
-  qy = _g_asyncns_res_query (gur->asyncns, rrname, C_IN, T_SRV);
+  qy = _g_asyncns_res_query (gur->asyncns, rrname, 0, T_SRV);
   req = resolve_async (gur, qy, lookup_service_process, lookup_service_free,
                        cancellable, callback, user_data, lookup_service_async);
   req->u.service.service = g_strdup (rrname);
