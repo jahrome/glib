@@ -778,3 +778,118 @@ _gio_marshal_VOID__STRING_STRING_VARIANT (GClosure     *closure,
             data2);
 }
 
+/* VOID:STRING (gio-marshal.list:21) */
+
+/* VOID:STRING,STRING (gio-marshal.list:22) */
+void
+_gio_marshal_VOID__STRING_STRING (GClosure     *closure,
+                                  GValue       *return_value G_GNUC_UNUSED,
+                                  guint         n_param_values,
+                                  const GValue *param_values,
+                                  gpointer      invocation_hint G_GNUC_UNUSED,
+                                  gpointer      marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__STRING_STRING) (gpointer     data1,
+                                                    gpointer     arg_1,
+                                                    gpointer     arg_2,
+                                                    gpointer     data2);
+  register GMarshalFunc_VOID__STRING_STRING callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register gpointer data1, data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_VOID__STRING_STRING) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_string (param_values + 1),
+            g_marshal_value_peek_string (param_values + 2),
+            data2);
+}
+
+/* VOID:STRING,BOOLEAN (gio-marshal.list:23) */
+void
+_gio_marshal_VOID__STRING_BOOLEAN (GClosure     *closure,
+                                   GValue       *return_value G_GNUC_UNUSED,
+                                   guint         n_param_values,
+                                   const GValue *param_values,
+                                   gpointer      invocation_hint G_GNUC_UNUSED,
+                                   gpointer      marshal_data)
+{
+  typedef void (*GMarshalFunc_VOID__STRING_BOOLEAN) (gpointer     data1,
+                                                     gpointer     arg_1,
+                                                     gboolean     arg_2,
+                                                     gpointer     data2);
+  register GMarshalFunc_VOID__STRING_BOOLEAN callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register gpointer data1, data2;
+
+  g_return_if_fail (n_param_values == 3);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_VOID__STRING_BOOLEAN) (marshal_data ? marshal_data : cc->callback);
+
+  callback (data1,
+            g_marshal_value_peek_string (param_values + 1),
+            g_marshal_value_peek_boolean (param_values + 2),
+            data2);
+}
+
+/* BOOL:OBJECT (gio-marshal.list:24) */
+void
+_gio_marshal_BOOLEAN__OBJECT (GClosure     *closure,
+                              GValue       *return_value G_GNUC_UNUSED,
+                              guint         n_param_values,
+                              const GValue *param_values,
+                              gpointer      invocation_hint G_GNUC_UNUSED,
+                              gpointer      marshal_data)
+{
+  typedef gboolean (*GMarshalFunc_BOOLEAN__OBJECT) (gpointer     data1,
+                                                    gpointer     arg_1,
+                                                    gpointer     data2);
+  register GMarshalFunc_BOOLEAN__OBJECT callback;
+  register GCClosure *cc = (GCClosure*) closure;
+  register gpointer data1, data2;
+  gboolean v_return;
+
+  g_return_if_fail (return_value != NULL);
+  g_return_if_fail (n_param_values == 2);
+
+  if (G_CCLOSURE_SWAP_DATA (closure))
+    {
+      data1 = closure->data;
+      data2 = g_value_peek_pointer (param_values + 0);
+    }
+  else
+    {
+      data1 = g_value_peek_pointer (param_values + 0);
+      data2 = closure->data;
+    }
+  callback = (GMarshalFunc_BOOLEAN__OBJECT) (marshal_data ? marshal_data : cc->callback);
+
+  v_return = callback (data1,
+                       g_marshal_value_peek_object (param_values + 1),
+                       data2);
+
+  g_value_set_boolean (return_value, v_return);
+}
+

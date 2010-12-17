@@ -3,6 +3,8 @@ include $(CLEAR_VARS)
 
 LOCAL_SRC_FILES:= \
     ./libcharset/localcharset.c \
+    gdatetime.c     \
+    gtimezone.c     \
     gurifuncs.c     \
     ghostutils.c    \
     garray.c        \

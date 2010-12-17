@@ -467,6 +467,13 @@ g_io_error_enum_get_type (void)
         { G_IO_ERROR_PARTIAL_INPUT, "G_IO_ERROR_PARTIAL_INPUT", "partial-input" },
         { G_IO_ERROR_INVALID_DATA, "G_IO_ERROR_INVALID_DATA", "invalid-data" },
         { G_IO_ERROR_DBUS_ERROR, "G_IO_ERROR_DBUS_ERROR", "dbus-error" },
+        { G_IO_ERROR_HOST_UNREACHABLE, "G_IO_ERROR_HOST_UNREACHABLE", "host-unreachable" },
+        { G_IO_ERROR_NETWORK_UNREACHABLE, "G_IO_ERROR_NETWORK_UNREACHABLE", "network-unreachable" },
+        { G_IO_ERROR_CONNECTION_REFUSED, "G_IO_ERROR_CONNECTION_REFUSED", "connection-refused" },
+        { G_IO_ERROR_PROXY_FAILED, "G_IO_ERROR_PROXY_FAILED", "proxy-failed" },
+        { G_IO_ERROR_PROXY_AUTH_FAILED, "G_IO_ERROR_PROXY_AUTH_FAILED", "proxy-auth-failed" },
+        { G_IO_ERROR_PROXY_NEED_AUTH, "G_IO_ERROR_PROXY_NEED_AUTH", "proxy-need-auth" },
+        { G_IO_ERROR_PROXY_NOT_ALLOWED, "G_IO_ERROR_PROXY_NOT_ALLOWED", "proxy-not-allowed" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
@@ -1130,10 +1137,31 @@ g_credentials_type_get_type (void)
       static const GEnumValue values[] = {
         { G_CREDENTIALS_TYPE_INVALID, "G_CREDENTIALS_TYPE_INVALID", "invalid" },
         { G_CREDENTIALS_TYPE_LINUX_UCRED, "G_CREDENTIALS_TYPE_LINUX_UCRED", "linux-ucred" },
+        { G_CREDENTIALS_TYPE_FREEBSD_CMSGCRED, "G_CREDENTIALS_TYPE_FREEBSD_CMSGCRED", "freebsd-cmsgcred" },
         { 0, NULL, NULL }
       };
       GType g_define_type_id =
         g_enum_register_static (g_intern_static_string ("GCredentialsType"), values);
+      g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
+    }
+
+  return g_define_type_id__volatile;
+}
+
+GType
+g_dbus_message_byte_order_get_type (void)
+{
+  static volatile gsize g_define_type_id__volatile = 0;
+
+  if (g_once_init_enter (&g_define_type_id__volatile))
+    {
+      static const GEnumValue values[] = {
+        { G_DBUS_MESSAGE_BYTE_ORDER_BIG_ENDIAN, "G_DBUS_MESSAGE_BYTE_ORDER_BIG_ENDIAN", "big-endian" },
+        { G_DBUS_MESSAGE_BYTE_ORDER_LITTLE_ENDIAN, "G_DBUS_MESSAGE_BYTE_ORDER_LITTLE_ENDIAN", "little-endian" },
+        { 0, NULL, NULL }
+      };
+      GType g_define_type_id =
+        g_enum_register_static (g_intern_static_string ("GDBusMessageByteOrder"), values);
       g_once_init_leave (&g_define_type_id__volatile, g_define_type_id);
     }
 

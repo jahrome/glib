@@ -45,6 +45,7 @@ gdbus_sources := \
 	gdbusserver.h			gdbusserver.c			\
 
 local_sources := \
+	gproxyaddress.h			\
 	glocaldirectorymonitor.c 	\
 	glocaldirectorymonitor.h 	\
 	glocalfile.c 			\
@@ -63,6 +64,12 @@ local_sources := \
 	glocalfileiostream.h		\
 	glocalvfs.c 			\
 	glocalvfs.h 			\
+	gsocks4proxy.c			\
+	gsocks4proxy.h			\
+	gsocks4aproxy.c			\
+	gsocks4aproxy.h			\
+	gsocks5proxy.c			\
+	gsocks5proxy.h			\
 
 unix_sources := \
 	gfiledescriptorbased.c  \
@@ -88,6 +95,10 @@ unix_sources := \
 
 
 LOCAL_SRC_FILES:= \
+	gproxy.c gproxyaddress.c \
+	gproxyaddressenumerator.c gproxyconnection.c \
+	gproxyresolver.c	\
+	gdummyproxyresolver.c	\
 	xdgmime/xdgmimealias.c	\
 	xdgmime/xdgmime.c	\
 	xdgmime/xdgmimecache.c	\
@@ -98,8 +109,6 @@ LOCAL_SRC_FILES:= \
 	xdgmime/xdgmimeparent.c	\
 	libasyncns/asyncns.c	\
 	gappinfo.c 		\
-	gapplication.c		\
-	gapplication.h		\
 	gasynchelper.c 		\
 	gasynchelper.h 		\
 	gasyncinitable.c	\

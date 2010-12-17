@@ -166,6 +166,34 @@ G_GNUC_INTERNAL void _gio_marshal_VOID__STRING_STRING_VARIANT (GClosure     *clo
                                                                gpointer      invocation_hint,
                                                                gpointer      marshal_data);
 
+/* VOID:STRING (gio-marshal.list:21) */
+#define _gio_marshal_VOID__STRING	g_cclosure_marshal_VOID__STRING
+
+/* VOID:STRING,STRING (gio-marshal.list:22) */
+G_GNUC_INTERNAL void _gio_marshal_VOID__STRING_STRING (GClosure     *closure,
+                                                       GValue       *return_value,
+                                                       guint         n_param_values,
+                                                       const GValue *param_values,
+                                                       gpointer      invocation_hint,
+                                                       gpointer      marshal_data);
+
+/* VOID:STRING,BOOLEAN (gio-marshal.list:23) */
+G_GNUC_INTERNAL void _gio_marshal_VOID__STRING_BOOLEAN (GClosure     *closure,
+                                                        GValue       *return_value,
+                                                        guint         n_param_values,
+                                                        const GValue *param_values,
+                                                        gpointer      invocation_hint,
+                                                        gpointer      marshal_data);
+
+/* BOOL:OBJECT (gio-marshal.list:24) */
+G_GNUC_INTERNAL void _gio_marshal_BOOLEAN__OBJECT (GClosure     *closure,
+                                                   GValue       *return_value,
+                                                   guint         n_param_values,
+                                                   const GValue *param_values,
+                                                   gpointer      invocation_hint,
+                                                   gpointer      marshal_data);
+#define _gio_marshal_BOOL__OBJECT	_gio_marshal_BOOLEAN__OBJECT
+
 G_END_DECLS
 
 #endif /* ___gio_marshal_MARSHAL_H__ */
